@@ -5,8 +5,10 @@ describe("Sumar", () => {
     expect(sumar(3, 2)).toEqual(5);
   });
   it("Deberia mostrar cuantos productos se compra", () => {
-    expect(totalizador(3)).toEqual(3);
+    expect(totalizador(3,1)).toEqual(3);
   });
-  
+  it("Deberia mostrar el precio de comprar X productos con Y costo", () => {
+    expect(totalizador(3,5)).toEqual(15);
+  });
 });
 
