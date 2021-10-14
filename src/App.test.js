@@ -19,6 +19,9 @@ describe("Descifrar", () => {
   it("deberia reconocer los numeros de la primera parte, y separar los elementos de la segunda parte en la cadena separada por /", () => {
     expect(decifrarCadena("5,5/1,1")).toEqual([[5,5],[1,",",1]]);
   });
+  it("deberia reconocer los numeros de la primera parte y la segunda parte, y las letras de la segunda parte, y la tercera parte como string en la cadena separada por /", () => {
+    expect(decifrarCadena("5,5/1,1N/IDIDID")).toEqual([[5,5],[1,",",1,"N"],"IDIDID"]);
+  });
 
 });
 
