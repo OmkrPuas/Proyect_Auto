@@ -26,5 +26,9 @@ describe("Descifrar", () => {
     expect(decifrarCadena("5,5/1,1N/IDIDID")).toEqual([[5,5],[1,",",1,"N"],["I","D","I","D","I","D"]]);
   });
 
+  it("deberia crear un array lleno de ceros de Tamanio 5", () => {
+    expect(crear_Matrix(5)).toEqual([0,0,0,0,0]);
+  });
+
 });
 

@@ -1,6 +1,8 @@
 function crear_Matrix(tam_x) {
-
   var mapa = new Array(tam_x);
+  for (var i = 0; i < tam_x; i++) {
+    mapa[i] = 0;
+  }
   return mapa
 }
 
