@@ -13,6 +13,9 @@ describe("Descifrar", () => {
   it("deberia dividir en partes la cadena separando por /", () => {
     expect(decifrarCadena("5,5/1")).toEqual([[5,5],"1"]);
   });
+  it("deberia reconocer los numeros de la primera parte, y separar los elementos de la segunda parte en la cadena separada por /", () => {
+    expect(decifrarCadena("5,5/1,1")).toEqual([[5,5],["1",",","1"]]);
+  });
 
 });
 
