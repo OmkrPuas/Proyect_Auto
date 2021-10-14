@@ -24,7 +24,7 @@ export function ponerOrigen(mapa, origen) {
 
 export function validarComando(comando) {
   var res = false;
-  if (comando == "A" || comando == "D" || comando == "I") {
+  if (comando == "A" || comando == "D" || comando == "I" || comando == "S") {
     res = true;
   }
   return res
@@ -90,35 +90,80 @@ export function cambiarDireccion(mapa, posicion, orden) {
   return mapa
 }
 
+export function comando_saltar(mapa, posicion){
+  if(posicion[2] == "N"){
+    if(posicion[0] > 1){
+      mapa[posicion[0]][posicion[1]] = 0;
+      mapa[posicion[0]-2][posicion[1]] = "N"
+    }
+  }
+  if(posicion[2] == "S"){
+    if(posicion[0] < mapa.length-2){
+      mapa[posicion[0]][posicion[1]] = 0;
+      mapa[posicion[0]+2][posicion[1]] = "S"
+    }
+  }
+  if(posicion[2] == "E"){
+    if(posicion[1] < mapa[posicion[0]].length - 2){
+      mapa[posicion[0]][posicion[1]] = 0;
+      mapa[posicion[0]][posicion[1]+2] = "E"
+    }
+  }
+  if(posicion[2] == "O"){
+    if(posicion[1] > 1){
+      mapa[posicion[0]][posicion[1]] = 0;
+      mapa[posicion[0]][posicion[1]-2] = "O"
+    }
+  }
+  return mapa;
+}
+
+export function comando_avanzar(mapa, posicion){
+  if(posicion[2] == "N"){
+    if(posicion[0] > 0){
+      mapa[posicion[0]][posicion[1]] = 0;
+      mapa[posicion[0]-1][posicion[1]] = "N"
+    }
+  }
+  if(posicion[2] == "S"){
+    if(posicion[0] < mapa.length-1){
+      mapa[posicion[0]][posicion[1]] = 0;
+      mapa[posicion[0]+1][posicion[1]] = "S"
+    }
+  }
+  if(posicion[2] == "E"){
+    if(posicion[1] < mapa[posicion[0]].length - 1){
+      mapa[posicion[0]][posicion[1]] = 0;
+      mapa[posicion[0]][posicion[1]+1] = "E"
+    }
+  }
+  if(posicion[2] == "O"){
+    if(posicion[1] > 0){
+      mapa[posicion[0]][posicion[1]] = 0;
+      mapa[posicion[0]][posicion[1]-1] = "O"
+    }
+  }
+
+  return mapa;
+}
+
+export function avance(mapa, posicion, orden){
+  if(orden == "A"){
+    mapa = comando_avanzar(mapa, posicion);
+  }else{
+    if(orden == "S"){
+      mapa = comando_saltar(mapa, posicion);
+    }
+  }
+  return mapa;
+}
+
 
 export function movimiento(mapa, posicion, orden) {
   if(orden == "I" || orden == "D"){
     mapa = cambiarDireccion(mapa, posicion, orden);
   }else{
-    if(posicion[2] == "N"){
-      if(posicion[0] > 0){
-        mapa[posicion[0]][posicion[1]] = 0;
-        mapa[posicion[0]-1][posicion[1]] = "N"
-      }
-    }
-    if(posicion[2] == "S"){
-      if(posicion[0] < mapa.length-1){
-        mapa[posicion[0]][posicion[1]] = 0;
-        mapa[posicion[0]+1][posicion[1]] = "S"
-      }
-    }
-    if(posicion[2] == "E"){
-      if(posicion[1] < mapa[posicion[0]].length - 1){
-        mapa[posicion[0]][posicion[1]] = 0;
-        mapa[posicion[0]][posicion[1]+1] = "E"
-      }
-    }
-    if(posicion[2] == "O"){
-      if(posicion[1] > 0){
-        mapa[posicion[0]][posicion[1]] = 0;
-        mapa[posicion[0]][posicion[1]-1] = "O"
-      }
-    }
+    mapa = avance(mapa, posicion, orden);
   }
   return mapa
 }

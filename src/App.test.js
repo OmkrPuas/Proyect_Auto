@@ -84,6 +84,26 @@ describe("Descifrar", () => {
     expect(auto.RecepcionDeOrden("2,2/1,1N/IA")).toEqual([1,0,"O"]);
   });
 
+  it("25. Deberia validar si el comando de movimiento es valido", () => {
+    expect(auto.validarComando("S")).toEqual(true);
+  });
+
+  it("26. Deberia validar los comandos de movimiento", () => {
+    expect(auto.validarComandos(["A","S"])).toEqual(true);
+  });
+
+  it("27. Deberia validar si el origen y los comandos son validos para la matriz.", () => {
+    expect(auto.verificarValidez([[2,2],[0,1,"S"],["A","S"]])).toEqual(true);
+  });
+
+  it("28. Deberia mover el auto en el mapa hacia adelante.", () => {
+    expect(auto.movimiento([["S",0,0],[0,0,0],[0,0,0]],[0,0,"S"],"S")).toEqual([[0,0,0],[0,0,0],["S",0,0]]);
+  });
+
+  it("29. Dada una cadena, realizar los movimientos y devolver estado final.", () => {
+    expect(auto.RecepcionDeOrden("3,3/0,0E/DSIA")).toEqual([2,1,"E"]);
+  });
+
 
 
 });
