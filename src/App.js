@@ -51,6 +51,15 @@ function validarSentido(dimensiones, origen) {
   return res
 }
 
+function verificarValidez(Matriz_Origen_Ordenes) {
+  var res = false;
+  if (validarSentido(Matriz_Origen_Ordenes[0],Matriz_Origen_Ordenes[1]) == true){
+    res = validarComandos(Matriz_Origen_Ordenes[2]);
+  }
+  return res
+}
+
+
 function ubicarOrigen(MatrizyPO) {
   var dimensiones = MatrizyPO[0];
   var mapa = crear_Matrix(dimensiones[0], dimensiones[1])
@@ -98,4 +107,4 @@ function decifrarCadena(cadena) {
   return mensaje
 }
 
-export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos };
+export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos, verificarValidez};
