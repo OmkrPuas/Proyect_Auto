@@ -29,6 +29,11 @@ function decifrarCadena(cadena) {
       mensaje[1] = segunda_parte;
     }
   }
+
+  if (mensaje.length > 2) {
+    var tercera_parte = mensaje[2].split("");
+    mensaje[2] = tercera_parte;
+  }
   return mensaje
 }
 
