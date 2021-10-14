@@ -1,4 +1,4 @@
-import {decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos, verificarValidez, movimiento, nuevoEstado} from "./App.js";
+import {decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos, verificarValidez, movimiento, nuevoEstado, RecepcionDeOrden} from "./App.js";
 
 describe("Descifrar", () => {
   it("1. Deberia reconocer el numero de un string", () => {
@@ -80,6 +80,9 @@ describe("Descifrar", () => {
     expect(nuevoEstado([[0,"S"],[0,0]])).toEqual([0,1,"S"]);
   });
   
+  it("24. Dada una cadena, realizar los movimientos y devolver estado final.", () => {
+    expect(RecepcionDeOrden("2,2/1,1N/IA")).toEqual([1,0,"O"]);
+  });
 
 
 

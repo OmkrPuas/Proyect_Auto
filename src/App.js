@@ -59,6 +59,37 @@ function verificarValidez(Matriz_Origen_Ordenes) {
   return res
 }
 
+function cambiarDireccion(mapa, posicion, orden) {
+  if(orden == "I"){
+    if(posicion[2] == "N"){
+      mapa[posicion[0]][posicion[1]] = "O";
+    }
+    if(posicion[2] == "S"){
+      mapa[posicion[0]][posicion[1]] = "E";
+    }
+    if(posicion[2] == "E"){
+      mapa[posicion[0]][posicion[1]] = "N";
+    }
+    if(posicion[2] == "O"){
+      mapa[posicion[0]][posicion[1]] = "S";
+    }
+  }else{
+    if(posicion[2] == "N"){
+      mapa[posicion[0]][posicion[1]] = "E";
+    }
+    if(posicion[2] == "S"){
+      mapa[posicion[0]][posicion[1]] = "O";
+    }
+    if(posicion[2] == "E"){
+      mapa[posicion[0]][posicion[1]] = "S";
+    }
+    if(posicion[2] == "O"){
+      mapa[posicion[0]][posicion[1]] = "N";
+    }
+  }
+  return mapa
+}
+
 
 function movimiento(mapa, posicion, orden) {
   if(orden == "I" || orden == "D"){
@@ -153,4 +184,32 @@ function decifrarCadena(cadena) {
   return mensaje
 }
 
-export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos, verificarValidez, movimiento, nuevoEstado};
+function eliminarComa(origen){
+  origen.splice(1, 1);
+  return origen
+}
+
+function RecepcionDeOrden(cadena) {
+  var posicion = [0,0,"N"];
+  var mensaje = decifrarCadena(cadena);
+  mensaje[1] = eliminarComa(mensaje[1]);
+  var mapa = ubicarOrigen(mensaje);
+  var resultado = mensaje;
+  if(mapa != false){
+    if( verificarValidez(mensaje) == true){
+      posicion = mensaje[1];
+      for (var i = 0; i < mensaje[2].length; i++) {
+        mapa = movimiento(mapa, posicion, mensaje[2][i]);
+        posicion = nuevoEstado(mapa);
+      }
+      resultado = posicion;
+    }else{
+      resultado = "Orden Invalida";
+    }
+  }
+  return resultado;
+}
+
+
+
+export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos, verificarValidez, movimiento, nuevoEstado, RecepcionDeOrden};
