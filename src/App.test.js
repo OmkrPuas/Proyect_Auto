@@ -1,4 +1,4 @@
-import {decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos, verificarValidez} from "./App.js";
+import {decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos, verificarValidez, movimiento} from "./App.js";
 
 describe("Descifrar", () => {
   it("1. Deberia reconocer el numero de un string", () => {
@@ -70,6 +70,10 @@ describe("Descifrar", () => {
   });
   it("21. Deberia validar si el origen y los comandos son validos para la matriz.", () => {
     expect(verificarValidez([[2,2],[0,1,"S"],["A","I"]])).toEqual(true);
+  });
+
+  it("22. Deberia mover el auto en el mapa hacia adelante.", () => {
+    expect(movimiento([[0,"S"],[0,0]],[0,1,"S"],"A")).toEqual([[0,0],[0,"S"]]);
   });
   
 

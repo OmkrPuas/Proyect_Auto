@@ -60,6 +60,40 @@ function verificarValidez(Matriz_Origen_Ordenes) {
 }
 
 
+function movimiento(mapa, posicion, orden) {
+  if(orden == "I" || orden == "D"){
+    mapa = cambiarDireccion(mapa, posicion, orden);
+  }else{
+    if(posicion[2] == "N"){
+      if(posicion[0] > 0){
+        mapa[posicion[0]][posicion[1]] = 0;
+        mapa[posicion[0]-1][posicion[1]] = "N"
+      }
+    }
+    if(posicion[2] == "S"){
+      if(posicion[0] < mapa.length-1){
+        mapa[posicion[0]][posicion[1]] = 0;
+        mapa[posicion[0]+1][posicion[1]] = "S"
+      }
+    }
+    if(posicion[2] == "E"){
+      if(posicion[1] < mapa[posicion[0]].length - 1){
+        mapa[posicion[0]][posicion[1]] = 0;
+        mapa[posicion[0]][posicion[1]+1] = "E"
+      }
+    }
+    if(posicion[2] == "O"){
+      if(posicion[1] > 0){
+        mapa[posicion[0]][posicion[1]] = 0;
+        mapa[posicion[0]][posicion[1]-1] = "O"
+      }
+    }
+  }
+  return mapa
+}
+
+
+
 function ubicarOrigen(MatrizyPO) {
   var dimensiones = MatrizyPO[0];
   var mapa = crear_Matrix(dimensiones[0], dimensiones[1])
@@ -107,4 +141,4 @@ function decifrarCadena(cadena) {
   return mensaje
 }
 
-export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos, verificarValidez};
+export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos, verificarValidez, movimiento};
