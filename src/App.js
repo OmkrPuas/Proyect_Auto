@@ -22,10 +22,20 @@ function ponerOrigen(mapa, origen) {
   return mapa
 }
 
-function validarComandos(comando) {
+function validarComando(comando) {
   var res = false;
   if (comando == "A" || comando == "D" || comando == "I") {
     res = true;
+  }
+  return res
+}
+
+function validarComandos(comandos) {
+  var res = true;
+  for (var i = 0; i < comandos.length; i++) {
+    if(validarComando(comandos[i]) == false){
+      res = false;
+    }
   }
   return res
 }
@@ -88,4 +98,4 @@ function decifrarCadena(cadena) {
   return mensaje
 }
 
-export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComandos };
+export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos };
