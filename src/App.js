@@ -199,6 +199,10 @@ export function ejecutarMovimientos(mapa, mensaje){
   return resultado;
 }
 
+
+
+// FUNCION PRINCIPAL
+
 export function RecepcionDeOrden(cadena) {
   var mensaje = decifrarCadena(cadena);
   mensaje[1] = eliminarComadeOrigen(mensaje[1]);
