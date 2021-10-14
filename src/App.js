@@ -5,8 +5,11 @@ function crear_Matrix(tam_x){
 }
 
 function decifrarCadena(cadena){
-  var num = parseInt(cadena)
-  return num
+  var numeros = cadena.split(",")
+  for (var i=0; i < numeros.length; i++) {
+    numeros[i] = parseInt(numeros[i]);
+ }
+  return numeros
 }
 
 export {decifrarCadena, crear_Matrix};
