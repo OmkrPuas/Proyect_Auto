@@ -19,6 +19,13 @@ function decifrarCadena(cadena) {
   if (mensaje.length > 1) {
     if (mensaje[1].length > 1) {
       var segunda_parte = mensaje[1].split("");
+      for (var i = 0; i < segunda_parte.length; i++) {
+        if (isNaN(parseInt(segunda_parte[i]))){
+          segunda_parte[i] = segunda_parte[i];
+        }else{
+          segunda_parte[i] = parseInt(segunda_parte[i]);
+        }
+      }
       mensaje[1] = segunda_parte;
     }
   }
