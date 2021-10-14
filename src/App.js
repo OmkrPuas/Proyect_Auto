@@ -22,11 +22,25 @@ function ponerOrigen(mapa, origen) {
   return mapa
 }
 
+function validarSentido(origen) {
+  var res = false;
+  var sentido = origen[2];
+  if ( sentido == "N" || sentido == "E" || sentido == "O" || sentido == "S"){
+    res = true;
+  }
+  return res
+}
+
 function ubicarOrigen(MatrizyPO) {
   var dimensiones = MatrizyPO[0];
   var mapa = crear_Matrix(dimensiones[0],dimensiones[1])
   var origen = MatrizyPO[1];
-  mapa = ponerOrigen(mapa, origen);
+  if (validarSentido(origen)){
+    mapa = ponerOrigen(mapa, origen);
+  }else{
+    mapa = false;
+  }
+  
   return mapa
 }
 
