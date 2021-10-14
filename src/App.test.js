@@ -1,4 +1,4 @@
-import {decifrarCadena, crear_Matrix, crear_array} from "./App.js";
+import {decifrarCadena, crear_Matrix, crear_array, ubicarOrigen} from "./App.js";
 
 describe("Descifrar", () => {
   it("deberia reconocer el numero de un string", () => {
@@ -29,9 +29,12 @@ describe("Descifrar", () => {
   it("deberia crear un array lleno de ceros de Tamanio 5", () => {
     expect(crear_array(5)).toEqual([0,0,0,0,0]);
   });
-
-  it("deberia crear un array lleno de ceros de Tamanio 5", () => {
+  it("deberia crear un array lleno de ceros de Tamanio 2x2", () => {
     expect(crear_Matrix(2,2)).toEqual([[0,0],[0,0]]);
+  });
+
+  it("deberia ubicar el punto inicial como una direccion en una matriz", () => {
+    expect(ubicarOrigen([[2,2],[0,1,"N"]])).toEqual([[0,"N"],[0,0]]);
   });
 
 });

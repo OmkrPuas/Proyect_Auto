@@ -1,14 +1,3 @@
-function crear_Matrix(tam_x, tam_y) {
-  var mapa = new Array(tam_x);
-  for (var i = 0; i < tam_x; i++) {
-    mapa[i] = new Array(tam_y);
-    for (var j = 0; j < tam_y; j++) {
-      mapa[i][j] = 0;
-    }
-  }
-  return mapa
-}
-
 function crear_array(tam_x) {
   var mapa = new Array(tam_x);
   for (var i = 0; i < tam_x; i++) {
@@ -16,6 +5,31 @@ function crear_array(tam_x) {
   }
   return mapa
 }
+
+function crear_Matrix(tam_x, tam_y) {
+  var mapa = new Array(tam_x);
+  for (var i = 0; i < tam_x; i++) {
+    mapa[i] = crear_array(tam_y);
+  }
+  return mapa
+}
+
+function ponerOrigen(mapa, origen) {
+  var O_x = origen[0];
+  var O_y = origen[1];
+  var O_dir = origen[2];
+  mapa[O_x][O_y] = O_dir
+  return mapa
+}
+
+function ubicarOrigen(MatrizyPO) {
+  var dimensiones = MatrizyPO[0];
+  var mapa = crear_Matrix(dimensiones[0],dimensiones[1])
+  var origen = MatrizyPO[1];
+  mapa = ponerOrigen(mapa, origen);
+  return mapa
+}
+
 
 function decifrarCadena(cadena) {
   var mensaje = cadena.split("/");
@@ -50,4 +64,4 @@ function decifrarCadena(cadena) {
   return mensaje
 }
 
-export { decifrarCadena, crear_Matrix ,crear_array};
+export { decifrarCadena, crear_Matrix ,crear_array, ubicarOrigen};
