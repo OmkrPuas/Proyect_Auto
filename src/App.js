@@ -1,4 +1,15 @@
-function crear_Matrix(tam_x) {
+function crear_Matrix(tam_x, tam_y) {
+  var mapa = new Array(tam_x);
+  for (var i = 0; i < tam_x; i++) {
+    mapa[i] = new Array(tam_y);
+    for (var j = 0; j < tam_y; j++) {
+      mapa[i][j] = 0;
+    }
+  }
+  return mapa
+}
+
+function crear_array(tam_x) {
   var mapa = new Array(tam_x);
   for (var i = 0; i < tam_x; i++) {
     mapa[i] = 0;
@@ -39,4 +50,4 @@ function decifrarCadena(cadena) {
   return mensaje
 }
 
-export { decifrarCadena, crear_Matrix };
+export { decifrarCadena, crear_Matrix ,crear_array};
