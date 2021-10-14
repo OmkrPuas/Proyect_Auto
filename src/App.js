@@ -107,6 +107,18 @@ function ubicarOrigen(MatrizyPO) {
   return mapa
 }
 
+function nuevoEstado(mapa) {
+  for (var i = 0; i < mapa.length; i++) {
+    for (var j = 0; j < mapa[i].length; j++) {
+      if(mapa[i][j] != 0){
+        var direccion = [i,j,mapa[i][j]]
+      }
+    }
+  }
+  return direccion
+}
+
+
 
 function decifrarCadena(cadena) {
   var mensaje = cadena.split("/");
@@ -141,4 +153,4 @@ function decifrarCadena(cadena) {
   return mensaje
 }
 
-export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos, verificarValidez, movimiento};
+export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos, verificarValidez, movimiento, nuevoEstado};
