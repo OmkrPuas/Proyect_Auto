@@ -10,6 +10,9 @@ describe("Descifrar", () => {
   it("deberia reconocer los numeros de un string con otro separador distintos", () => {
     expect(decifrarCadena("5/1")).toEqual([5,"1"]);
   });
+  it("deberia dividir en partes la cadena separando por /", () => {
+    expect(decifrarCadena("5,5/1")).toEqual([[5,5],"1"]);
+  });
 
 });
 
