@@ -41,6 +41,10 @@ describe("Descifrar", () => {
     expect(ubicarOrigen([[2,2],[0,1,"J"]])).toEqual(false);
   });
 
+  it("deberia validar el sentido de direccion del punto inicial en una matriz", () => {
+    expect(ubicarOrigen([[2,2],[3,1,"N"]])).toEqual(false);
+  });
+
 
 
 });

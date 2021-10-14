@@ -22,25 +22,27 @@ function ponerOrigen(mapa, origen) {
   return mapa
 }
 
-function validarSentido(origen) {
+function validarSentido(dimensiones, origen) {
   var res = false;
-  var sentido = origen[2];
-  if ( sentido == "N" || sentido == "E" || sentido == "O" || sentido == "S"){
-    res = true;
+  if (dimensiones[0] > origen[0] && dimensiones[1] > origen[1]) {
+    var sentido = origen[2];
+    if (sentido == "N" || sentido == "E" || sentido == "O" || sentido == "S") {
+      res = true;
+    }
   }
   return res
 }
 
 function ubicarOrigen(MatrizyPO) {
   var dimensiones = MatrizyPO[0];
-  var mapa = crear_Matrix(dimensiones[0],dimensiones[1])
+  var mapa = crear_Matrix(dimensiones[0], dimensiones[1])
   var origen = MatrizyPO[1];
-  if (validarSentido(origen)){
+  if (validarSentido(dimensiones, origen)) {
     mapa = ponerOrigen(mapa, origen);
-  }else{
+  } else {
     mapa = false;
   }
-  
+
   return mapa
 }
 
@@ -61,9 +63,9 @@ function decifrarCadena(cadena) {
     if (mensaje[1].length > 1) {
       var segunda_parte = mensaje[1].split("");
       for (var i = 0; i < segunda_parte.length; i++) {
-        if (isNaN(parseInt(segunda_parte[i]))){
+        if (isNaN(parseInt(segunda_parte[i]))) {
           segunda_parte[i] = segunda_parte[i];
-        }else{
+        } else {
           segunda_parte[i] = parseInt(segunda_parte[i]);
         }
       }
@@ -78,4 +80,4 @@ function decifrarCadena(cadena) {
   return mensaje
 }
 
-export { decifrarCadena, crear_Matrix ,crear_array, ubicarOrigen};
+export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen };
