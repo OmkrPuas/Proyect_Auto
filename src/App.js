@@ -1,4 +1,4 @@
-function crear_array(tam_x) {
+export function crear_array(tam_x) {
   var mapa = new Array(tam_x);
   for (var i = 0; i < tam_x; i++) {
     mapa[i] = 0;
@@ -6,7 +6,7 @@ function crear_array(tam_x) {
   return mapa
 }
 
-function crear_Matrix(tam_x, tam_y) {
+export function crear_Matrix(tam_x, tam_y) {
   var mapa = new Array(tam_x);
   for (var i = 0; i < tam_x; i++) {
     mapa[i] = crear_array(tam_y);
@@ -14,7 +14,7 @@ function crear_Matrix(tam_x, tam_y) {
   return mapa
 }
 
-function ponerOrigen(mapa, origen) {
+export function ponerOrigen(mapa, origen) {
   var O_x = origen[0];
   var O_y = origen[1];
   var O_dir = origen[2];
@@ -22,7 +22,7 @@ function ponerOrigen(mapa, origen) {
   return mapa
 }
 
-function validarComando(comando) {
+export function validarComando(comando) {
   var res = false;
   if (comando == "A" || comando == "D" || comando == "I") {
     res = true;
@@ -30,7 +30,7 @@ function validarComando(comando) {
   return res
 }
 
-function validarComandos(comandos) {
+export function validarComandos(comandos) {
   var res = true;
   for (var i = 0; i < comandos.length; i++) {
     if(validarComando(comandos[i]) == false){
@@ -40,7 +40,7 @@ function validarComandos(comandos) {
   return res
 }
 
-function validarSentido(dimensiones, origen) {
+export function validarSentido(dimensiones, origen) {
   var res = false;
   if (dimensiones[0] > origen[0] && dimensiones[1] > origen[1]) {
     var sentido = origen[2];
@@ -51,7 +51,7 @@ function validarSentido(dimensiones, origen) {
   return res
 }
 
-function verificarValidez(Matriz_Origen_Ordenes) {
+export function verificarValidez(Matriz_Origen_Ordenes) {
   var res = false;
   if (validarSentido(Matriz_Origen_Ordenes[0],Matriz_Origen_Ordenes[1]) == true){
     res = validarComandos(Matriz_Origen_Ordenes[2]);
@@ -59,7 +59,7 @@ function verificarValidez(Matriz_Origen_Ordenes) {
   return res
 }
 
-function cambiarDireccion(mapa, posicion, orden) {
+export function cambiarDireccion(mapa, posicion, orden) {
   if(orden == "I"){
     if(posicion[2] == "N"){
       mapa[posicion[0]][posicion[1]] = "O";
@@ -91,7 +91,7 @@ function cambiarDireccion(mapa, posicion, orden) {
 }
 
 
-function movimiento(mapa, posicion, orden) {
+export function movimiento(mapa, posicion, orden) {
   if(orden == "I" || orden == "D"){
     mapa = cambiarDireccion(mapa, posicion, orden);
   }else{
@@ -125,7 +125,7 @@ function movimiento(mapa, posicion, orden) {
 
 
 
-function ubicarOrigen(MatrizyPO) {
+export function ubicarOrigenEnMapa(MatrizyPO) {
   var dimensiones = MatrizyPO[0];
   var mapa = crear_Matrix(dimensiones[0], dimensiones[1])
   var origen = MatrizyPO[1];
@@ -138,7 +138,7 @@ function ubicarOrigen(MatrizyPO) {
   return mapa
 }
 
-function nuevoEstado(mapa) {
+export function nuevoEstado(mapa) {
   for (var i = 0; i < mapa.length; i++) {
     for (var j = 0; j < mapa[i].length; j++) {
       if(mapa[i][j] != 0){
@@ -151,7 +151,7 @@ function nuevoEstado(mapa) {
 
 
 
-function decifrarCadena(cadena) {
+export function decifrarCadena(cadena) {
   var mensaje = cadena.split("/");
   if (mensaje[0].length > 1) {
     var numeros_primera_parte = mensaje[0].split(",");
@@ -184,25 +184,29 @@ function decifrarCadena(cadena) {
   return mensaje
 }
 
-function eliminarComa(origen){
+export function eliminarComadeOrigen(origen){
   origen.splice(1, 1);
   return origen
 }
 
-function RecepcionDeOrden(cadena) {
-  var posicion = [0,0,"N"];
+export function ejecutarMovimientos(mapa, mensaje){
+  var posicion = mensaje[1];
+  for (var i = 0; i < mensaje[2].length; i++) {
+    mapa = movimiento(mapa, posicion, mensaje[2][i]);
+    posicion = nuevoEstado(mapa);
+  }
+  var resultado = posicion;
+  return resultado;
+}
+
+export function RecepcionDeOrden(cadena) {
   var mensaje = decifrarCadena(cadena);
-  mensaje[1] = eliminarComa(mensaje[1]);
-  var mapa = ubicarOrigen(mensaje);
+  mensaje[1] = eliminarComadeOrigen(mensaje[1]);
+  var mapa = ubicarOrigenEnMapa(mensaje);
   var resultado = mensaje;
   if(mapa != false){
-    if( verificarValidez(mensaje) == true){
-      posicion = mensaje[1];
-      for (var i = 0; i < mensaje[2].length; i++) {
-        mapa = movimiento(mapa, posicion, mensaje[2][i]);
-        posicion = nuevoEstado(mapa);
-      }
-      resultado = posicion;
+    if(verificarValidez(mensaje) == true){
+      resultado = ejecutarMovimientos(mapa, mensaje);
     }else{
       resultado = "Orden Invalida";
     }
@@ -212,4 +216,3 @@ function RecepcionDeOrden(cadena) {
 
 
 
-export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComando, validarComandos, verificarValidez, movimiento, nuevoEstado, RecepcionDeOrden};

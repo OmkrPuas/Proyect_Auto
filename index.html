@@ -1,15 +1,19 @@
 <html>
   <body>
-    <h1>Sumador</h1>
-    <form id="sumar-form">
-      <label for="first-number">First Number:</label>
-      <input type="number" id="first-number" />
-      <label for="second-number">Second Number:</label>
-      <input type="number" id="second-number" />
-      <input type="submit" value="Sumar" />
+    <h1>Mover un Auto en Marte</h1>
+    <form id='auto-form'>
+      <label for="matrix_dimension">Dimensiones de la matriz:</label>
+      <input type="text" id="matrix_dimension"></br></br>
+      <label for="origen">Punto Origen:</label>
+      <input type="text" id="origen"></br></br>
+      <label for="comandos">Ordenes u Comandos:</label>
+      <input type="text" id="comandos"></br></br>
+      <input type="submit" value="Mover Auto">
     </form>
-    <div id="resultado-div"></div>
+    <div id="posInicial-div">1</div></br></br>
+    <div id="ordenes-div">2</div></br></br>
+    <div id="resultado-div">3</div>
 
-    <script type="module" src="./src/index.js"></script>
+    <script src="./src/index.js"></script>
   </body>
 </html>
