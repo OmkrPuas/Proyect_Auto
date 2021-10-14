@@ -22,6 +22,14 @@ function ponerOrigen(mapa, origen) {
   return mapa
 }
 
+function validarComandos(comando) {
+  var res = false;
+  if (comando == "A" || comando == "D" || comando == "I") {
+    res = true;
+  }
+  return res
+}
+
 function validarSentido(dimensiones, origen) {
   var res = false;
   if (dimensiones[0] > origen[0] && dimensiones[1] > origen[1]) {
@@ -80,4 +88,4 @@ function decifrarCadena(cadena) {
   return mensaje
 }
 
-export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen };
+export { decifrarCadena, crear_Matrix, crear_array, ubicarOrigen, validarComandos };
